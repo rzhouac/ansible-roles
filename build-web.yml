@@ -1,0 +1,10 @@
+---
+
+- hosts: website
+  roles:
+    - role: git
+      repo_url: 'https://github.com/rzhouac/website-template.git'
+      repo_dest: "{{ ansible_env.HOME }}/website"
+
+    - role: nginx
+      template_location: "{{ ansible_env.HOME }}/website/index.html"

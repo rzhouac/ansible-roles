@@ -2,7 +2,7 @@
 # tasks file for git
 
  - name: install git apt
-   apt: pkg=git update_cache=yes cache_valid_time=3600
+   apt: name=git update_cache=yes cache_valid_time=3600
    become: True
 
  - name: check out the repository on the host

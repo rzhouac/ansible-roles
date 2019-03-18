@@ -1,0 +1,25 @@
+---
+# tasks file for nginx
+
+ - name: install nginx
+   apt: name=nginx update_cache=yes
+   become: True
+
+ - name: copy nginx config file
+   copy: src=nginx.conf dest=/etc/nginx/sites-available/default
+   become: True
+
+ - name: enable configuration
+   become: True
+   file: >
+     dest=/etc/nginx/sites-enabled/default
+     src=/etc/nginx/sites-available/default
+     state=link
+
+ - name: copy index.html
+   become: True
+   copy: src={{ template_location }} dest=/usr/share/nginx/html/index.html mode=0644 remote_src=yes
+
+ - name: restart nginx
+   service: name=nginx state=restarted
+   become: True
