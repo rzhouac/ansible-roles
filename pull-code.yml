@@ -1,0 +1,7 @@
+---
+
+- hosts: lead-management
+  roles:
+    - role: git
+      repo_url: 'https://github.com/rzhouac/gocd-workshop.git'
+      repo_dest: "{{ ansible_env.HOME }}/lead-management"
